@@ -4,10 +4,12 @@ RUN mkdir /workspace
 WORKDIR /workspace
 COPY . /workspace/
 
+RUN cd /workspace/app && yarn
+
 # Add user so we don't need puppeteer --no-sandbox.
 RUN groupadd -r pptruser && useradd -r -g pptruser -G audio,video pptruser \
   && mkdir -p /home/pptruser/Downloads \
   && chown -R pptruser:pptruser /home/pptruser \
-  && chown -R pptruser:pptruser /workspace/node_modules
+  && chown -R pptruser:pptruser /workspace/app/node_modules
 
 USER pptruser
