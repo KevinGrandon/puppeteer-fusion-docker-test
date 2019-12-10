@@ -1,0 +1,17 @@
+version: '2.1'
+services:
+  www-integration:
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    depends_on:
+      - www-code
+  www-code:
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    environment:
+      - NODE_ENV
+    network_mode: 'host'
+    volumes:
+      - '$PWD/artifacts:/workspace/artifacts'
