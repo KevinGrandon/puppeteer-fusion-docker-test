@@ -14,6 +14,10 @@ services:
       dockerfile: ./Dockerfile
     environment:
       - NODE_ENV
-    network_mode: 'host'
+    expose:
+      - '3000'
+    ports:
+      - '3000:3000'
+    command: yarn --cwd /workspace/app dev
     volumes:
       - '$PWD/artifacts:/workspace/artifacts'
