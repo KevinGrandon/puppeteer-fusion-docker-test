@@ -1,6 +1,8 @@
 version: '2.1'
 services:
   www-integration:
+    privileged: true
+    network_mode: 'host'
     build:
       context: .
       dockerfile: ./Dockerfile
